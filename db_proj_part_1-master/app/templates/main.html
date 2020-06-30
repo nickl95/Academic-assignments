@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DB Project</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/main.css">
+</head>
+<body>
+<!---
+The 'block' is used for content that is unique to the page. If we were using Flask as intended, then there would
+be a base page in templates that would have all the content that would appear uniformly across all pages. An
+example is something like a navigation bar or logo in the corner.
+-->
+{% block content %}
+    <div class="main">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul class="flashed">
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+    </div>
+    <div align="center">
+    <hr>
+        <!---
+        ===================================================================================================
+        We should put the visualization here. That way it's always at the top and you don't need to scroll
+        ===================================================================================================
+        --->
+    <div>
+        <div>
+            <form method="POST" action="/main_page">
+                <p>
+                    <input type="submit" value="Create Database" name="create-database"/>
+                </p>
+            </form>
+        </div>
+        <!-- <div>
+            <form method="POST" action="/main_page">
+                <p>
+                    {{ assignReviewForm.reviewer1.label }}{{ assignReviewForm.reviewer1 }}
+                </p>
+                <p>
+                    {{ assignReviewForm.reviewer2.label }}{{ assignReviewForm.reviewer2 }}
+                </p>
+                <p>
+                    {{ assignReviewForm.reviewer3.label }}{{ assignReviewForm.reviewer3 }}
+                </p>
+                <p>
+                    <input type="submit" value="Assign Reviewers" name="assign-reviewers"/>
+                </p>
+            </form>
+        </div> -->
+        <div>
+            <form method="POST" action="/main_page">
+                <p>
+                    {{ paperChangesForm.paperId.label }}{{ paperChangesForm.paperId }}
+                </p>
+                <p>
+                    {{ paperChangesForm.abstractPaper.label }}{{ paperChangesForm.abstractPaper }}
+                </p>
+                <p>
+                    {{ paperChangesForm.titlePaper.label }}{{ paperChangesForm.titlePaper }}
+                </p>
+                <p>
+                    {{ paperChangesForm.pdfPaper.label }}{{ paperChangesForm.pdfPaper }}
+                </p>
+                <p>
+                    <input type="submit" value="Create Paper" name="paper-changes-add">
+                    <input type="submit" value="Delete Paper" name="paper-changes-del">
+                    <input type="submit" value="Update Paper" name="paper-changes-upd">
+                </p>
+            </form>
+        </div>
+        <div>
+            <form method="POST" action="/main_page">
+                <p>
+                    {{ pcMemberChangesForm.pcName.label }}{{ pcMemberChangesForm.pcName }}
+                </p>
+                <p>
+                    {{ pcMemberChangesForm.pcEmail.label }}{{ pcMemberChangesForm.pcEmail }}
+                </p>
+                <p>
+                    <input type="submit" value="Create PC Member" name="pcmem-changes-add">
+                    <input type="submit" value="Delete PC Member" name="pcmem-changes-del">
+                    <input type="submit" value="Update PC Member" name="pcmem-changes-upd">
+                </p>
+            </form>
+        </div>
+        <div>
+            <form method="POST" action="/main_page">
+                <p>
+                    {{ reviewChangesForm.revDate.label }}{{ reviewChangesForm.revDate }}
+                </p>
+                <p>
+                    {{ reviewChangesForm.revRecc.label }}{{ reviewChangesForm.revRecc }}
+                </p>
+                <p>
+                    {{ reviewChangesForm.revComment.label }}{{ reviewChangesForm.revComment }}
+                </p>
+                <p>
+                    {{ reviewChangesForm.revPaperid.label }}{{ reviewChangesForm.revPaperid }}
+                </p>
+                <p>
+                    {{ reviewChangesForm.revEmail.label }}{{ reviewChangesForm.revEmail }}
+                </p>
+                <p>
+                    <input type="submit" value="Create Review" name="review-changes-add">
+                    <input type="submit" value="Delete Review" name="review-changes-del">
+                    <input type="submit" value="Update Review" name="review-changes-upd">
+                </p>
+            </form>
+        </div>
+        <div>
+            <form method="POST" action="/main_page">
+            <p>
+                <input type="submit" value="List Papers by Fotouhi as the only author" name="prob-four">
+            </p>
+            </form>
+            <form method="POST" action="/main_page">
+            <p>
+                <input type="submit" value="List Papers by Fotouhi as the first author" name="prob-five">
+            </p>
+            </form>
+            <form method="POST" action="/main_page">
+            <p>
+                <input type="submit" value="List Papers coauthored by Lu and Fotouhi" name="prob-six">
+            </p>
+            </form>
+            <form method="POST" action="/main_page">
+            <p>
+                <input type="submit" value="List PC Member(s) assigned to most papers" name="prob-seven">
+            </p>
+            </form>
+            <form method="POST" action="/main_page">
+            <p>
+                <input type="submit" value="List PC Members not assigned any papers" name="prob-eight">
+            </p>
+            </form>
+            <form method="POST" action="/main_page">
+            <p>
+                <input type="submit" value="List papers rejected by Matt and John" name="prob-nine">
+            </p>
+            </form>
+            <form method="POST" action="/main_page">
+            <p>
+                <input type="submit" value="List accepted papers" name="prob-ten">
+            </p>
+            </form>
+        </div>
+    </div>
+    </div>
+{% endblock %}
+</body>
+</html>
